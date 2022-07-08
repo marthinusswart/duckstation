@@ -34,7 +34,6 @@
 #include "input_overlay_ui.h"
 #include "save_state_selector_ui.h"
 #include "scmversion/scmversion.h"
-#include "core/imgui_osd_override.h"
 #include <cmath>
 #include <cstdio>
 #include <cstring>
@@ -601,17 +600,9 @@ bool CommonHostInterface::CreateHostDisplayResources()
   }
 
   if (!m_fullscreen_ui_enabled)
-  {
-    if (g_settings.override_osdmessages_scaling)
-    {
-      ImGuiOSDOverride::osd_override_scaling = true;
-      ImGuiOSDOverride::osd_override_font_scale = (g_settings.override_osdmessages_scale / 100.0f);
-    }
-
     ImGuiFullscreen::ResetFonts();
-  }
 
-   if (!m_display->UpdateImGuiFontTexture())
+  if (!m_display->UpdateImGuiFontTexture())
   {
     Log_ErrorPrintf("Failed to create ImGui font text");
     if (m_fullscreen_ui_enabled)
@@ -1483,8 +1474,8 @@ void CommonHostInterface::DrawOSDMessages()
 {
   AcquirePendingOSDMessages();
 
-  float max_width, margin, spacing, padding, rounding, position_x, position_y, fontsize;
-  ImFont* font = nullptr;
+  float max_width, margin, spacing, padding, rounding, position_x, position_y;
+  ImFont* font;
 
   if (m_fullscreen_ui_enabled)
   {
@@ -1499,35 +1490,18 @@ void CommonHostInterface::DrawOSDMessages()
   }
   else
   {
-        
-    if ((g_settings.override_osdmessages_scaling) && (ImGuiOSDOverride::g_osd_override_font != nullptr))
-    {
-      const float scale = g_settings.override_osdmessages_scale / 100.0f;
-            
-      spacing = 5.0f * scale;
-      margin = 10.0f * scale;
-      padding = 8.0f * scale;
-      rounding = 5.0f * scale;
-      max_width = ImGui::GetIO().DisplaySize.x - margin;
-      position_x = margin;
-      position_y = margin;
-      font = ImGuiOSDOverride::g_osd_override_font;
-      
-    }
-    else
-    {
-      const float scale = ImGui::GetIO().DisplayFramebufferScale.x;   
-
-      spacing = 5.0f * scale;
-      margin = 10.0f * scale;
-      padding = 8.0f * scale;
-      rounding = 5.0f * scale;
-      max_width = ImGui::GetIO().DisplaySize.x - margin;
-      position_x = margin;
-      position_y = margin;
-      font = ImGui::GetFont();
-    }
-
+    //const float scale = ImGui::GetIO().DisplayFramebufferScale.x;
+    const float scale = 3.0f;
+    spacing = 5.0f * scale;
+    margin = 10.0f * scale;
+    padding = 8.0f * scale;
+    rounding = 5.0f * scale;
+    max_width = ImGui::GetIO().DisplaySize.x - margin;
+    position_x = margin;
+    position_y = margin;
+    font = ImGui::GetFont();
+    //add get OCD font here if override
+    //font = ImGuiFullscreen::g_large_font;
   }
 
   auto iter = m_osd_active_messages.begin();
@@ -1561,7 +1535,7 @@ void CommonHostInterface::DrawOSDMessages()
     dl->AddRect(pos, ImVec2(pos.x + size.x, pos.y + size.y), IM_COL32(0x48, 0x48, 0x48, alpha), rounding);
     dl->AddText(font, font->FontSize, ImVec2(text_rect.x, text_rect.y), IM_COL32(0xff, 0xff, 0xff, alpha),
                 msg.text.c_str(), msg.text.c_str() + msg.text.length(), max_width, &text_rect);
-    position_y += size.y + spacing;    
+    position_y += size.y + spacing;
   }
 }
 

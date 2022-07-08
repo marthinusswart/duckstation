@@ -245,9 +245,6 @@ void Settings::Load(SettingsInterface& si)
   display_post_process_chain = si.GetStringValue("Display", "PostProcessChain", "");
   display_max_fps = si.GetFloatValue("Display", "MaxFPS", DEFAULT_DISPLAY_MAX_FPS);
 
-  override_osdmessages_scaling = si.GetBoolValue("General", "OverrideOSDMessagesScaling", false);
-  override_osdmessages_scale = si.GetFloatValue("General", "OverrideOSDMessagesScale", DEFAULT_OSD_OVERRIDE_SCALE);
-
   cdrom_readahead_sectors = static_cast<u8>(si.GetIntValue("CDROM", "ReadaheadSectors", DEFAULT_CDROM_READAHEAD_SECTORS));
   cdrom_region_check = si.GetBoolValue("CDROM", "RegionCheck", false);
   cdrom_load_image_to_ram = si.GetBoolValue("CDROM", "LoadImageToRAM", false);
