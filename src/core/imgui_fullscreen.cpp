@@ -203,7 +203,7 @@ bool UpdateFonts()
 
   ImGuiIO& io = ImGui::GetIO();
   io.Fonts->Clear();
-
+  // add new OCD font here
   g_standard_font = AddTextFont(standard_font_size);
   AddIconFonts(standard_font_size);
   g_medium_font = AddTextFont(medium_font_size);
@@ -219,7 +219,7 @@ bool UpdateFonts()
 
 void ResetFonts()
 {
-  const float standard_font_size = std::ceil(DPIScale(s_font_size));
+  const float standard_font_size = std::ceil(DPIScale(s_font_size) * 3.0f);
 
   ImGuiIO& io = ImGui::GetIO();
   io.Fonts->Clear();

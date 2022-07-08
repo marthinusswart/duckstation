@@ -154,6 +154,8 @@ struct Settings
   float display_max_fps = DEFAULT_DISPLAY_MAX_FPS;
   float gpu_pgxp_tolerance = -1.0f;
   float gpu_pgxp_depth_clear_threshold = 300.0f / 4096.0f;
+  bool override_osdmessages_scaling = false;
+  float override_osdmessages_scale = 100.0f;
 
   u8 cdrom_readahead_sectors = DEFAULT_CDROM_READAHEAD_SECTORS;
   bool cdrom_region_check = false;
@@ -289,6 +291,7 @@ struct Settings
     DEFAULT_GPU_MAX_RUN_AHEAD = 128,
     DEFAULT_VRAM_WRITE_DUMP_WIDTH_THRESHOLD = 128,
     DEFAULT_VRAM_WRITE_DUMP_HEIGHT_THRESHOLD = 128,
+    DEFAULT_OSD_OVERRIDE_SCALE = 100
   };
 
   void Load(SettingsInterface& si);

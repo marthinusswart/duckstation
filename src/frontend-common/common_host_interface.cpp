@@ -635,7 +635,7 @@ void CommonHostInterface::OnHostDisplayResized()
 {
   const u32 new_width = m_display ? m_display->GetWindowWidth() : 0;
   const u32 new_height = m_display ? m_display->GetWindowHeight() : 0;
-  const float new_scale = m_display ? m_display->GetWindowScale() : 1.0f;
+  const float new_scale = m_display ? m_display->GetWindowScale() : 1.0f;  
 
   HostInterface::OnHostDisplayResized();
 
@@ -1490,7 +1490,8 @@ void CommonHostInterface::DrawOSDMessages()
   }
   else
   {
-    const float scale = ImGui::GetIO().DisplayFramebufferScale.x;
+    //const float scale = ImGui::GetIO().DisplayFramebufferScale.x;
+    const float scale = 3.0f;
     spacing = 5.0f * scale;
     margin = 10.0f * scale;
     padding = 8.0f * scale;
@@ -1499,6 +1500,8 @@ void CommonHostInterface::DrawOSDMessages()
     position_x = margin;
     position_y = margin;
     font = ImGui::GetFont();
+    //add get OCD font here if override
+    //font = ImGuiFullscreen::g_large_font;
   }
 
   auto iter = m_osd_active_messages.begin();
