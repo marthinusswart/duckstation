@@ -259,10 +259,10 @@ AdvancedSettingsWidget::AdvancedSettingsWidget(QtHostInterface* host_interface, 
   addBooleanTweakOption(m_host_interface, m_ui.tweakOptionTable, tr("Create Save State Backups"), "General",
                         "CreateSaveStateBackups", false);
 
-  addBooleanTweakOption(m_host_interface, m_ui.tweakOptionTable, tr("Override OSD Messages Scaling"), "General",
+  addBooleanTweakOption(m_host_interface, m_ui.tweakOptionTable, tr("Override Scaling of OSD Messages"), "General",
                         "OverrideOSDMessagesScaling", false);
 
-  addIntRangeTweakOption(m_host_interface, m_ui.tweakOptionTable, tr("OSD Messages Override Scale (%)"), "General", "OverrideOSDMessagesScale", 50,
+  addIntRangeTweakOption(m_host_interface, m_ui.tweakOptionTable, tr("Override Scale of OSD Messages (%)"), "General", "OverrideOSDMessagesScale", 50,
                          300, Settings::DEFAULT_OSD_OVERRIDE_SCALE);
 
   dialog->registerWidgetHelp(m_ui.logLevel, tr("Log Level"), tr("Information"),
