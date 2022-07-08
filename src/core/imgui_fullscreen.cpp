@@ -164,11 +164,6 @@ static ImFont* AddTextFont(float size /*= 15.0f*/)
   }
 }
 
-ImFont* AddTextFontExported(float size /*= 15.0f*/)
-{
-  return AddTextFont(size);
-}
-
 static void AddIconFonts(float size)
 {
   static const ImWchar range_fa[] = {ICON_MIN_FA, ICON_MAX_FA, 0};
