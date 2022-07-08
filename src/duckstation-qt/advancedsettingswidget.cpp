@@ -319,4 +319,8 @@ void AdvancedSettingsWidget::onResetToDefaultClicked()
   setBooleanTweakOption(m_ui.tweakOptionTable, i++, true);                       // Increase timer resolution
   setBooleanTweakOption(m_ui.tweakOptionTable, i++, false);                      // Allow booting without SBI file
   setBooleanTweakOption(m_ui.tweakOptionTable, i++, false);                      // Create save state backups
+
+  setBooleanTweakOption(m_ui.tweakOptionTable, i++, false);                      // Override OSD Scaling
+  setIntRangeTweakOption(m_ui.tweakOptionTable, i++,
+                         static_cast<int>(Settings::DEFAULT_OSD_OVERRIDE_SCALE));// Override OSD Scale
 }
