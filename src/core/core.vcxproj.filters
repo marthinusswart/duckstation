@@ -61,6 +61,7 @@
     <ClCompile Include="imgui_fullscreen.cpp" />
     <ClCompile Include="imgui_styles.cpp" />
     <ClCompile Include="cheevos.cpp" />
+    <ClCompile Include="imgui_osd_override.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="types.h" />
@@ -126,5 +127,6 @@
     <ClInclude Include="imgui_fullscreen.h" />
     <ClInclude Include="imgui_styles.h" />
     <ClInclude Include="cheevos.h" />
+    <ClInclude Include="imgui_osd_override.h" />
   </ItemGroup>
 </Project>
